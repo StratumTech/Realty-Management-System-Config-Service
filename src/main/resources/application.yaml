@@ -1,0 +1,9 @@
+spring:
+  config:
+    import: "optional:file:.env[.properties]"
+  security:
+    user:
+      name: ${CONFIG_SERVICE_USERNAME}
+      password: ${CONFIG_SERVICE_PASSWORD}
+      roles:
+        - CONFIG

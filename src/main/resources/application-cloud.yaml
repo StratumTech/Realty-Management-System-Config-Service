@@ -1,0 +1,16 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: realty-management-system-config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${GIT_REPOSITORY_URI}
+          clone-on-start: true
+          default-label: master
+          search-paths:
+            - '{application}/{profile}'
+          username: ${GIT_REPOSITORY_USERNAME}
+          password: ${GIT_REPOSITORY_PASSWORD}
