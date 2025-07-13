@@ -10,4 +10,4 @@ services:
     ports:
       - "8888:8888"
     networks:
-      - app_net
+      - realty-management-system-infrastructure_app-net
