@@ -1,0 +1,22 @@
+name: Deploy Service
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    uses: StratumTech/Realty-Management-System-Infrastructure/.github/workflows/ssh-deploy.yml@main
+    with:
+      remote-workdir: /home/stratumtech/Realty-Management-System-Config-Service
+      deploy-script: |
+        echo "CONFIG_SERVICE_USERNAME=${{ secrets.CONFIG_SERVICE_USERNAME }}" > .env &&
+        echo "CONFIG_SERVICE_PASSWORD=${{ secrets.CONFIG_SERVICE_PASSWORD }}" >> .env &&
+        echo "GIT_REPOSITORY_URI=https://github.com/StratumTech/Realty-Management-System-Infrastructure.git" >> .env &&
+        docker-compose down &&
+        docker-compose pull &&
+        docker-compose up -d
+    secrets:
+      ssh-key-secret: ${{ secrets.SSH_PRIVATE_KEY }}
+      ssh-host: ${{ secrets.SERVER_HOST }}
+      ssh-user: ${{ secrets.SERVER_USER }}
