@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  service-config:
+    build: .
+    env_file:
+      - .env
+    image: reality-management-system-config-service
+    container_name: reality-management-system-config-service
+    ports:
+      - "8888:8888"
+    networks:
+      - app_net
