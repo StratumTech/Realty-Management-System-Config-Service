@@ -10,8 +10,6 @@ jobs:
     with:
       remote-workdir: /home/stratumtech/Realty-Management-System-Config-Service
       deploy-script: |
-        echo "CONFIG_SERVICE_USERNAME=${{ secrets.CONFIG_SERVICE_USERNAME }}" > .env &&
-        echo "CONFIG_SERVICE_PASSWORD=${{ secrets.CONFIG_SERVICE_PASSWORD }}" >> .env &&
         echo "GIT_REPOSITORY_URI=https://github.com/StratumTech/Realty-Management-System-Infrastructure.git" >> .env &&
         docker-compose down &&
         docker-compose pull &&
@@ -20,3 +18,5 @@ jobs:
       ssh-key-secret: ${{ secrets.SSH_PRIVATE_KEY }}
       ssh-host: ${{ secrets.SERVER_HOST }}
       ssh-user: ${{ secrets.SERVER_USER }}
+      config-service-username: ${{ secrets.CONFIG_SERVICE_USERNAME }}
+      config-service-password: ${{ secrets.CONFIG_SERVICE_PASSWORD }}
