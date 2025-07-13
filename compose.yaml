@@ -9,5 +9,3 @@ services:
     container_name: reality-management-system-config-service
     ports:
       - "8888:8888"
-    networks:
-      - realty-management-system-infrastructure_app-net
