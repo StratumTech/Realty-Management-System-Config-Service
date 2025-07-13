@@ -1,11 +1,14 @@
 name: Deploy Service
 
 on:
-  push:
+  workflow_run:
+    workflows: ["CI Service"]
     branches: [ main ]
+    types: [ completed ]
 
 jobs:
   deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     uses: StratumTech/Realty-Management-System-Infrastructure/.github/workflows/ssh-deploy.yml@main
     with:
       remote-workdir: /home/stratumtech/Realty-Management-System-Config-Service
