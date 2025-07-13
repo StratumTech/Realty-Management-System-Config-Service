@@ -1,0 +1,14 @@
+name: CI Service
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    uses: StratumTech/Realty-Management-System-Infrastructure/.github/workflows/docker-build.yml@main
+    with:
+      java-version: '17'
+      gradle-arguments: 'clean bootJar -x test'
